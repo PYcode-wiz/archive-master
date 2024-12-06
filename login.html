@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ArchiveMaster - log in or sign up</title>
+    <link rel="stylesheet" href="style_for_login.css">
+</head>
+
+<body>
+    <h1>ArchiveMaster</h1>
+    <div class="container">
+        <input type="checkbox" id="check">
+        <div class="login">
+            <form>
+                <label for="check">LOGIN</label>
+                <input type="email" name="Email" id="forlogin" placeholder="Email" required>
+                <input type="password" name="Password" id="pw" placeholder="Password" required>
+                <input type="checkbox" id="showpw">
+                <button>Login</button>
+            </form>
+        </div>
+        <div class="signup">
+            <form>
+                <label for="check">SIGN UP</label>
+                <input type="email" name="Email" placeholder="Email" required>
+                <input type="password" name="Password" id="pw1" placeholder="Password" required>
+                <input type="checkbox" id="showpw1">
+                <input type="password" name="Password" id="pw2" placeholder="Confirm Password" required>
+                <input type="checkbox" id="showpw2">
+                <p id="error-message" style="color: red; display: none; margin-left: 100px;">Passwords do not match!</p>
+                <button id="submit-btn">Sign up</button>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        /*Script for Showing password*/
+        var showPasswordCheckbox = document.getElementById('showpw');
+        var showPasswordCheckbox1 = document.getElementById('showpw1');
+        var showPasswordCheckbox2 = document.getElementById('showpw2');
+        var password = document.getElementById('pw');
+        var password1 = document.getElementById('pw1');
+        var password2 = document.getElementById('pw2');
+
+        showPasswordCheckbox.addEventListener('change', function () {
+            if (showPasswordCheckbox.checked) {
+                password.type = 'text';
+            } else {
+                password.type = 'password';
+            }
+        });
+
+        showPasswordCheckbox1.addEventListener('change', function () {
+            if (showPasswordCheckbox1.checked) {
+                password1.type = 'text';
+            }
+            else {
+                password1.type = 'password';
+            }
+        });
+
+        showPasswordCheckbox2.addEventListener('change', function () {
+            if (showPasswordCheckbox2.checked) {
+                password2.type = 'text';
+            }
+            else {
+                password2.type = 'password';
+            }
+        });
+
+        /* Script for unmatched password*/
+        document.getElementById('pw1').addEventListener('input', validatePasswords);
+        document.getElementById('pw2').addEventListener('input', validatePasswords);
+
+        function validatePasswords() {
+            var password = document.getElementById('pw1').value;
+            var confirmPassword = document.getElementById('pw2').value;
+
+            if (password !== confirmPassword) {
+                document.getElementById('error-message').style.display = 'block';
+                document.getElementById('submit-btn').disabled = true;
+                document.getElementById('submit-btn').style.background = "red";
+            } else if (password === "" && confirmPassword === "") {
+                document.getElementById('error-message').style.display = 'none';
+                document.getElementById('submit-btn').disabled = false;
+                document.getElementById('submit-btn').style.background = "#1d9bf0";
+            } else {
+                document.getElementById('error-message').style.display = 'none';
+                document.getElementById('submit-btn').disabled = false;
+                document.getElementById('submit-btn').style.background = "#1d9bf0";
+            }
+        }
+
+        function validateForm() {
+            validatePasswords();
+            if (document.getElementById('error-message').style.display === 'block') {
+                return false;
+            }
+            return true;
+        }
+    </script>
+</body>
+
+</html>

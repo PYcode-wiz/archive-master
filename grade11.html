@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ArchiveMaster | Grade 11</title>
+    <link rel="icon" href="logo.png" type="image/x-icon">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/boxicons@latest/css/boxicons.min.css">
+    <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css'>
+    <link rel="stylesheet" href="dark-theme.css" id="styleSheet">
+</head>
+
+<body id="body-pd">
+    <header class="header" id="header">
+        <div class="header_toggle"> <i class='bx bx-menu' id="header-toggle"></i> </div>
+        <div id="greeting"></div>
+        <div class="theme-btn"><input type="checkbox" class="checkbox" id="checkbox">
+            <label for="checkbox" class="checkbox-label">
+                <i class="fas fa-sun" style="color: rgb(255, 208, 0);"></i>
+                <i class="fas fa-moon"></i>
+                <span class="ball"></span>
+            </label>
+        </div>
+    </header>
+    <div class="l-navbar" id="nav-bar">
+        <nav class="nav">
+            <div>
+                <a href="#" class="nav_logo"> <i class="fas fa-database" id="logo"></i> <span
+                        class="nav_logo-name">ArchiveMaster</span> </a>
+                <div class="nav_list"> <a href="index.html" class="nav_link"> <i
+                            class='bx bx-grid-alt nav_icon'></i><span class="nav_name">Dashboard</span>
+
+                    </a> <a href="attendance.html" class="nav_link"> <i class='bx bx-user nav_icon'></i><span
+                            class="nav_name">Attendance</span>
+
+                        <a href="search.html" class="nav_link active"><i class="fas fa-search"></i>
+                            <span class="nav_name">Search</span> </a>
+                        <a href="delete.html" class="nav_link"> <i class="far fa-trash-alt"></i>
+                            <span class="nav_name">Delete</span> </a>
+                        <a href="help.html" class="nav_link"> <i class="far fa-question-circle"></i>
+                            <span class="nav_name">Help</span> </a>
+                </div>
+            </div>
+            <a href="login.html" class="nav_link"> <i class='bx bx-log-out nav_icon'></i>
+                <span class="nav_name">Logout</span> </a>
+        </nav>
+    </div>
+
+    <!--For Search bar-->
+    <div class="search">
+        <div class="box">
+            <form action="" method=""><input type="text" id="Search" placeholder="Search">
+                <a id="search-btn"><i class="fas fa-search"></i></a>
+            </form>
+        </div>
+    </div>
+
+    <!--For section-->
+    <div class="mainContainer">
+        <a href="section_a.html" class="section_divs">
+            <h1 class="section">Section A</h1>
+        </a>
+        <a href="section_b.html" class="section_divs">
+            <h1 class="section">Section B</h1>
+        </a>
+        <a href="section_c.html" class="section_divs">
+            <h1 class="section">Section C</h1>
+        </a>
+        <a href="section_d.html" class="section_divs">
+            <h1 class="section">Section D</h1>
+        </a>
+        <a href="section_e.html" class="section_divs">
+            <h1 class="section">Section E</h1>
+        </a>
+        <a href="section_f.html" class="section_divs">
+            <h1 class="section">Section F</h1>
+        </a>
+        <a href="section_g.html" class="section_divs">
+            <h1 class="section">Section G</h1>
+        </a>
+        <a href="section_h.html" class="section_divs">
+            <h1 class="section">Section H</h1>
+        </a>
+        <a href="section_i.html" class="section_divs">
+            <h1 class="section">Section I</h1>
+        </a>
+        <a href="section_j.html" class="section_divs">
+            <h1 class="section">Section J</h1>
+        </a>
+        <a href="section_k.html" class="section_divs">
+            <h1 class="section">Section K</h1>
+        </a>
+        <a href="section_l.html" class="section_divs">
+            <h1 class="section">Section L</h1>
+        </a>
+        <a href="section_m.html" class="section_divs">
+            <h1 class="section">Section M</h1>
+        </a>
+        <a href="section_n.html" class="section_divs">
+            <h1 class="section">Section N</h1>
+        </a>
+        <a href="section_o.html" class="section_divs">
+            <h1 class="section">Section O</h1>
+        </a>
+        <a href="section_p.html" class="section_divs">
+            <h1 class="section">Section P</h1>
+        </a>
+        <a href="section_q.html" class="section_divs">
+            <h1 class="section">Section Q</h1>
+        </a>
+    </div>
+
+    <!-- Scrip for Navigation toggle -->
+    <script>
+        document.addEventListener("DOMContentLoaded", function (event) {
+
+            const showNavbar = (toggleId, navId, bodyId, headerId) => {
+                const toggle = document.getElementById(toggleId),
+                    nav = document.getElementById(navId),
+                    bodypd = document.getElementById(bodyId),
+                    headerpd = document.getElementById(headerId)
+
+                // Validate that all variables exist
+                if (toggle && nav && bodypd && headerpd) {
+                    toggle.addEventListener('click', () => {
+                        // show navbar
+                        nav.classList.toggle('show')
+                        // change icon
+                        toggle.classList.toggle('bx-x')
+                        // add padding to body
+                        bodypd.classList.toggle('body-pd')
+                        // add padding to header
+                        headerpd.classList.toggle('body-pd')
+                    })
+                }
+            }
+
+            showNavbar('header-toggle', 'nav-bar', 'body-pd', 'header')
+
+            /*===== LINK ACTIVE =====*/
+            const linkColor = document.querySelectorAll('.nav_link')
+
+            function colorLink() {
+                if (linkColor) {
+                    linkColor.forEach(l => l.classList.remove('active'))
+                    this.classList.add('active')
+                }
+            }
+            linkColor.forEach(l => l.addEventListener('click', colorLink))
+
+            // Your code to run since DOM is loaded and ready
+        });
+    </script>
+    <!--Script for greeting -->
+    <script>
+        const time = new Date().getHours();
+        let greeting;
+        if (time >= 0 && time < 12) {
+            greeting = "Good Morning!";
+        } else if (time >= 12 && time < 18) {
+            greeting = "Good Afternoon!";
+        } else if (time >= 18 && time < 21) {
+            greeting = "Good Evening!";
+        } else {
+            greeting = "Night Night!"
+        }
+        document.getElementById("greeting").innerHTML = greeting;
+    </script>
+    <!-- Script for Theme -->
+    <script>
+        const checkbox = document.getElementById('checkbox');
+        const styleSheet = document.getElementById('styleSheet');
+
+        checkbox.addEventListener('change', () => {
+            if (checkbox.checked) {
+                styleSheet.href = 'light-theme.css';
+            } else {
+                styleSheet.href = 'dark-theme.css';
+            }
+        });
+    </script>
+
+</body>
+
+</html>

@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ArchiveMaster | Search</title>
+    <link rel="icon" href="logo.png" type="image/x-icon">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/boxicons@latest/css/boxicons.min.css">
+    <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css'>
+    <link rel="stylesheet" href="dark-theme.css" id="styleSheet">
+</head>
+
+<body id="body-pd">
+    <header class="header" id="header">
+        <div class="header_toggle"> <i class='bx bx-menu' id="header-toggle"></i> </div>
+        <div id="greeting"></div>
+        <div class="theme-btn"><input type="checkbox" class="checkbox" id="checkbox">
+            <label for="checkbox" class="checkbox-label">
+                <i class="fas fa-sun" style="color: rgb(255, 208, 0);"></i>
+                <i class="fas fa-moon"></i>
+                <span class="ball"></span>
+            </label>
+        </div>
+    </header>
+    <div class="l-navbar" id="nav-bar">
+        <nav class="nav">
+            <div>
+                <a href="#" class="nav_logo"> <i class="fas fa-database" id="logo"></i> <span
+                        class="nav_logo-name">ArchiveMaster</span> </a>
+                <div class="nav_list"> <a href="index.html" class="nav_link"> <i
+                            class='bx bx-grid-alt nav_icon'></i><span class="nav_name">Dashboard</span>
+
+                    </a> <a href="attendance.html" class="nav_link"> <i class='bx bx-user nav_icon'></i><span
+                            class="nav_name">Attendance</span>
+
+                        <a href="search.html" class="nav_link active"><i class="fas fa-search"></i>
+                            <span class="nav_name">Search</span> </a>
+                        <a href="delete.html" class="nav_link"> <i class="far fa-trash-alt"></i>
+                            <span class="nav_name">Delete</span> </a>
+                        <a href="help.html" class="nav_link"> <i class="far fa-question-circle"></i>
+                            <span class="nav_name">Help</span> </a>
+                </div>
+            </div>
+            <a href="login.html" class="nav_link"> <i class='bx bx-log-out nav_icon'></i>
+                <span class="nav_name">Logout</span> </a>
+        </nav>
+    </div>
+
+    <!--For Search bar-->
+    <div class="search">
+        <div class="box">
+            <form action="" method=""><input type="text" placeholder="Search">
+                <a><i class="fas fa-search"></i></a>
+            </form>
+        </div>
+    </div>
+
+    <!--For two containers (Grade 11 & 12)-->
+    <div class="w">
+        <a href="grade11.html" class="grade11">
+            <h1 class="grade_title">Grade 11</h1>
+        </a>
+
+        <a href="grade12.html" class="grade12">
+            <h1 class="grade_title">Grade 12</h1>
+        </a>
+    </div>
+    <!-- Scrip for Navigation toggle -->
+    <script>
+        document.addEventListener("DOMContentLoaded", function (event) {
+
+            const showNavbar = (toggleId, navId, bodyId, headerId) => {
+                const toggle = document.getElementById(toggleId),
+                    nav = document.getElementById(navId),
+                    bodypd = document.getElementById(bodyId),
+                    headerpd = document.getElementById(headerId)
+
+                // Validate that all variables exist
+                if (toggle && nav && bodypd && headerpd) {
+                    toggle.addEventListener('click', () => {
+                        // show navbar
+                        nav.classList.toggle('show')
+                        // change icon
+                        toggle.classList.toggle('bx-x')
+                        // add padding to body
+                        bodypd.classList.toggle('body-pd')
+                        // add padding to header
+                        headerpd.classList.toggle('body-pd')
+                    })
+                }
+            }
+
+            showNavbar('header-toggle', 'nav-bar', 'body-pd', 'header')
+
+            /*===== LINK ACTIVE =====*/
+            const linkColor = document.querySelectorAll('.nav_link')
+
+            function colorLink() {
+                if (linkColor) {
+                    linkColor.forEach(l => l.classList.remove('active'))
+                    this.classList.add('active')
+                }
+            }
+            linkColor.forEach(l => l.addEventListener('click', colorLink))
+
+            // Your code to run since DOM is loaded and ready
+        });
+    </script>
+
+    <!--Script for greeting -->
+    <script>
+        const time = new Date().getHours();
+        let greeting;
+        if (time >= 0 && time < 12) {
+            greeting = "Good Morning!";
+        } else if (time >= 12 && time < 18) {
+            greeting = "Good Afternoon!";
+        } else if (time >= 18 && time < 21) {
+            greeting = "Good Evening!";
+        } else {
+            greeting = "Night Night!"
+        }
+        document.getElementById("greeting").innerHTML = greeting;
+    </script>
+
+    <!-- Script for Theme -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Get the checkbox and stylesheet elements
+            const checkbox = document.getElementById('checkbox');
+            const styleSheet = document.getElementById('styleSheet');
+
+            // Check localStorage for theme preference
+            const storedTheme = localStorage.getItem('theme');
+            if (storedTheme === 'light') {
+                // If the theme preference is light, check the checkbox and switch to light theme
+                checkbox.checked = true;
+                applyLightTheme();
+            }
+
+            // Add event listener to the checkbox
+            checkbox.addEventListener('change', () => {
+                if (checkbox.checked) {
+                    applyLightTheme();
+                    // Save the theme preference to localStorage
+                    localStorage.setItem('theme', 'light');
+                } else {
+                    applyDarkTheme();
+                    // Save the theme preference to localStorage
+                    localStorage.setItem('theme', 'dark');
+                }
+            });
+
+            // Function to apply light theme
+            function applyLightTheme() {
+                styleSheet.href = 'light-theme.css';
+                document.body.classList.add('light-theme');
+            }
+
+            // Function to apply dark theme
+            function applyDarkTheme() {
+                styleSheet.href = 'dark-theme.css';
+                document.body.classList.remove('light-theme');
+            }
+        });
+    </script>
+</body>
+
+</html>
